@@ -4,11 +4,12 @@ import WordCard from "../components/WordCard";
 import { onValue, ref } from "firebase/database";
 import { db } from "../firebaseConfig";
 
-interface Word {
+export interface Word {
   id: string;
   word: string;
   meaning: string;
   example: string;
+  category: string;
 }
 
 interface Category {
@@ -79,7 +80,7 @@ const WordList: React.FC = () => {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {Object.values(words).map((word: Word) => (
-              <WordCard key={word.id} word={word} />
+              <WordCard key={word.id} word={{ ...word, category }} />
             ))}
           </div>
         </div>
